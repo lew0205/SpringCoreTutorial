@@ -9,7 +9,9 @@ import hello.core.member.MemoryMemberRepository;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 
 @Configuration
 public class AppConfig {
@@ -35,5 +37,13 @@ public class AppConfig {
     @Bean
     public DiscountPolicy discountPolicy() {
         return new RateDiscountPolicy();
+    }
+
+    @Configuration
+    @ComponentScan(
+            excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION,classes = Configuration.class)
+    )
+    public static class AutoAppConfig {
+
     }
 }
