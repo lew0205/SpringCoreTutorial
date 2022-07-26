@@ -44,6 +44,9 @@ public class AppConfig {
             excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Configuration.class)
     )
     public static class AutoAppConfig {
-
+        @Bean("memoryMemberRepository")
+        public MemberRepository memberRepository() {
+            return new MemoryMemberRepository();
+        }
     }
 }
